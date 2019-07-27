@@ -1,3 +1,6 @@
+#ifndef IO_HEADER
+#define IO_HEADER
+
 #include <iostream>
 
 class IO
@@ -6,7 +9,14 @@ public:
     template<typename T, typename... Ts>
     static void error(T t, Ts... ts)
     {
-        std::cout << "Error: ";
+        std::cout << "[ERROR] ";
+        print(t, ts...);
+    }
+
+    template<typename T, typename... Ts>
+    static void debug(T t, Ts... ts)
+    {
+        std::cout << "[Debug] ";
         print(t, ts...);
     }
 
@@ -22,7 +32,6 @@ public:
     {
         std::cout << t << '\n';
     }
-
-private:
-//    static void __print(
 };
+
+#endif // IO_HEADER
