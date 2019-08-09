@@ -1,1 +1,17 @@
-output/compile_commands.json
+[
+{
+  "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+  "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/app.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/app.cpp",
+  "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/app.cpp"
+},
+{
+  "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+  "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/interpreter.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/interpreter.cpp",
+  "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/interpreter.cpp"
+},
+{
+  "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+  "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/scanner.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/scanner.cpp",
+  "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/scanner.cpp"
+}
+]
