@@ -1,6 +1,7 @@
 #include <interpreter.h>
 #include <iostream>
 #include "io.h"
+#include "scanner.h"
 
 std::optional<std::string> Interpreter::get_line()
 {
@@ -31,6 +32,12 @@ int Interpreter::run()
         const auto input = get_line();
         if (!input) break;
         IO::debug("Input: ", *input);
+        Scanner scanner(*input);
+        auto tokens = scanner.scan_tokens();
+        for (auto&& token : tokens)
+        {
+            std::cout << token << std::endl;
+        }
     }
     return 0;
 }

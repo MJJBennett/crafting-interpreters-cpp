@@ -16,9 +16,10 @@ add_executable(Interpreter
     # Class compilation
     src/interpreter.cpp include/interpreter.h
     src/scanner.cpp include/scanner.h
+    # Function compilation
+    src/tokens.cpp include/tokens.h
     # Also explicitly add header-only files
     include/io.h 
-    include/tokens.h
 )
 
 target_include_directories(Interpreter PRIVATE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>")
