@@ -40,7 +40,7 @@ int Interpreter::run()
     {
         const auto input = get_line();
         if (!input) break;
-        IO::debug("Input: `", *input, "`");
+        IO::debug("Input: `", *input, "` - Scanning for tokens.");
         Scanner scanner(*input, found_lines);
         auto tokens = scanner.scan_tokens();
         IO::debug("Finished scanning input tokens.");

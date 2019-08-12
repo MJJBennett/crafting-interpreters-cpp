@@ -11,15 +11,18 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(Interpreter 
+    # Function & tools compilation
+    src/tokens.cpp include/tokens.h
+    src/tools.cpp include/tools.h
     # Main application compilation
     src/app.cpp
     # Class compilation
     src/interpreter.cpp include/interpreter.h
     src/scanner.cpp include/scanner.h
-    # Function compilation
-    src/tokens.cpp include/tokens.h
     # Also explicitly add header-only files
     include/io.h 
 )
+
+target_compile_options(Interpreter PRIVATE -Wall -Wextra -pedantic -Werror -Wno-unused-function)
 
 target_include_directories(Interpreter PRIVATE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>")

@@ -1,6 +1,7 @@
 #include "scanner.h"
 #include <algorithm>
 #include "interpreter.h"
+#include "tools.h"
 
 const std::string Scanner::str_unexpected = "Unexpected character: ";
 
@@ -51,8 +52,34 @@ void Scanner::scan_token()
         case '\t': break;
         case '\n': m_line++; break;
         case '"': consume_string(); break;
+        // We have a case for each number because Vim makes generating this
+        // pretty trivial and it allows us to avoid putting complex logic
+        // into the default case.
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9': consume_number(); break;
         default: Interpreter::error(m_line, str_unexpected + c); break;
     }
+}
+
+void Scanner::consume_number()
+{
+    // Consume until we hit the next string token
+    m_current = std::find_if(m_current, m_source.cend(), [](char c) { return !is_digit(c); });
+
+    if (peek() == '.' && is_digit(peek2()))
+    {
+        m_current = std::find_if(m_current + 1, m_source.cend(), [](char c) { return !is_digit(c); });
+    }
+
+    add_token(TokenType::NUMBER, std::stod(std::string{m_start, m_current}));
 }
 
 void Scanner::consume_string()
@@ -88,4 +115,16 @@ void Scanner::add_token(TokenType t, Literal literal)
 {
     std::string text(m_start, m_current);
     m_tokens.emplace_back(Token{t, text, literal, m_line});
+}
+
+char Scanner::peek() const
+{
+    if (m_current != m_source.cend()) return *m_current;
+    return '\0';
+}
+
+char Scanner::peek2() const
+{
+    if (m_current != m_source.cend() && m_current + 1 != m_source.cend()) return *(m_current + 1);
+    return '\0';
 }

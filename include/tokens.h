@@ -5,7 +5,7 @@
 #include <iostream>
 #include <variant>
 
-using Literal = std::variant<std::string, float, int, std::monostate>;
+using Literal = std::variant<std::string, double, std::monostate>;
 
 // Token enum copied from Crafting Interpreters
 enum class TokenType
