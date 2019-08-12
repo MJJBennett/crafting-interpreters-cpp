@@ -30,6 +30,7 @@ private:
 
     void consume_string();
     void consume_number();
+    void consume_identifier();
 
     // Safe lookahead functions (returns '\0' in case of m_source.cend())
     [[nodiscard]] char peek() const;

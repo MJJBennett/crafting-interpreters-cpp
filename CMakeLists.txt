@@ -14,6 +14,7 @@ add_executable(Interpreter
     # Function & tools compilation
     src/tokens.cpp include/tokens.h
     src/tools.cpp include/tools.h
+    src/keywords.cpp include/keywords.h
     # Main application compilation
     src/app.cpp
     # Class compilation

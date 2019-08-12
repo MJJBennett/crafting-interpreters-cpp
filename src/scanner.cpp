@@ -1,6 +1,7 @@
 #include "scanner.h"
 #include <algorithm>
 #include "interpreter.h"
+#include "keywords.h"
 #include "tools.h"
 
 const std::string Scanner::str_unexpected = "Unexpected character: ";
@@ -20,6 +21,11 @@ void Scanner::scan_token()
 {
     const auto c = *m_current;
     std::advance(m_current, 1);
+    if (is_alpha(c))
+    {
+        consume_identifier();
+        return;
+    }
     switch (c)
     {
         case '(': add_token(TokenType::LEFT_PAREN); break;
@@ -69,6 +75,19 @@ void Scanner::scan_token()
     }
 }
 
+void Scanner::consume_identifier()
+{
+    // Consume until we hit something that isn't part of an identifier
+    m_current =
+        std::find_if(m_current, m_source.cend(), [](char c) { return !is_valid_identifier(c); });
+    const std::string id{m_start, m_current};
+    std::cout << '`' << id << "`\n";
+    TokenType type =
+        (keywords.find(id) != keywords.end()) ? keywords.at(id) : TokenType::IDENTIFIER;
+
+    add_token(type);
+}
+
 void Scanner::consume_number()
 {
     // Consume until we hit the next string token
@@ -76,7 +95,8 @@ void Scanner::consume_number()
 
     if (peek() == '.' && is_digit(peek2()))
     {
-        m_current = std::find_if(m_current + 1, m_source.cend(), [](char c) { return !is_digit(c); });
+        m_current =
+            std::find_if(m_current + 1, m_source.cend(), [](char c) { return !is_digit(c); });
     }
 
     add_token(TokenType::NUMBER, std::stod(std::string{m_start, m_current}));
@@ -113,8 +133,7 @@ void Scanner::add_token(TokenType t) { add_token(t, std::monostate{}); }
 
 void Scanner::add_token(TokenType t, Literal literal)
 {
-    std::string text(m_start, m_current);
-    m_tokens.emplace_back(Token{t, text, literal, m_line});
+    m_tokens.emplace_back(Token{t, {m_start, m_current}, literal, m_line});
 }
 
 char Scanner::peek() const
