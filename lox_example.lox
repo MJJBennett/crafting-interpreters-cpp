@@ -6,3 +6,5 @@
 123.456 654.321
 this_is_an_identifier23 > 4
 and this is nil!
+now we create an error on line 10
+^

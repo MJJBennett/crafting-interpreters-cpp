@@ -39,6 +39,7 @@ int Interpreter::run()
     while (!foundError || !m_file)
     {
         const auto input = get_line();
+        found_lines += 1;
         if (!input) break;
         IO::debug("Input: `", *input, "` - Scanning for tokens.");
         Scanner scanner(*input, found_lines);
