@@ -15,10 +15,12 @@ public:
 
     int run();
 
-    void error(std::string line);
+    static void report(unsigned int line, const std::string& where, const std::string& message);
+    static void error(unsigned int line, const std::string& message);
 
 private:
     std::optional<std::ifstream> m_file;
+    static bool foundError;
 
     unsigned int m_line_count = 0;
 };

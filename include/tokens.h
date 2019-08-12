@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <variant>
+
+using Literal = std::variant<std::string, float, int, std::monostate>;
 
 // Token enum copied from Crafting Interpreters
 enum class TokenType
@@ -88,9 +91,8 @@ public:
 
     const TokenType type;
     const std::string lexeme;
-    const void* literal;
+    const Literal literal;
     const unsigned int line;
-
 };
 
 std::ostream& operator<<(std::ostream&, const Token&);

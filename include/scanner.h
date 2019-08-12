@@ -8,14 +8,26 @@
 class Scanner
 {
     using str_itr = std::string::const_iterator;
+
+    const static std::string str_unexpected;
 public:
-    Scanner(std::string source) : m_source(std::move(source)), m_start(m_source.begin()), m_current(m_source.begin()) {}
+    Scanner(std::string source, unsigned int line = 1)
+        : m_source(std::move(source)),
+          m_start(m_source.begin()),
+          m_current(m_source.begin()),
+          m_line(line)
+    {
+    }
     std::vector<Token>& scan_tokens();
-    
+    unsigned int line() const { return m_line; }
+
 private:
     void scan_token();
     void add_token(TokenType t);
-    void add_token(TokenType t, void* literal);
+    void add_token(TokenType t, Literal literal);
+    bool match(char expected);
+
+    void consume_string();
 
 private:
     std::string m_source;
@@ -23,7 +35,7 @@ private:
 
     str_itr m_start;
     str_itr m_current;
-    unsigned int m_line = 1;
+    unsigned int m_line;
 };
 
-#endif // SCANNER_H
+#endif  // SCANNER_H
