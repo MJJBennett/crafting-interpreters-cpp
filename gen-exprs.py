@@ -10,6 +10,7 @@ template__ = """#ifndef EXPRESSION_LOX_H
 struct Expression
 {
 };
+
 """
 
 after__ = """#endif  // EXPRESSION_LOX_H
@@ -29,7 +30,21 @@ classes__ = {
 if __name__ == '__main__':
     with open("include/expression.h", "w") as file:
         file.write(template__)
-        file.write("\n")
+
+        for c in classes__:
+            cn = c + "Expr"
+            file.write("struct " + cn + ";\n");
+
+        file.write("""
+template<typename T>
+struct Visitor
+{
+""")
+
+        for c in classes__:
+            cn = c + "Expr"
+            file.write("\tT visit" + cn + "(const " + cn + "& expr);\n")
+        file.write("};\n\n")
 
         for c in classes__:
             cn = c + "Expr"
@@ -51,7 +66,13 @@ if __name__ == '__main__':
                     file.write(", ")
                 file.write("m_" + a[1] + "(" + a[1] + ")")
                 needcomma = True
-            file.write("\n\t{\n\t}\n\nprivate:\n")
+            file.write("\n\t{\n\t}\n\n")
+            file.write("\ttemplate<typename T>\n")
+            file.write("\tT accept(")
+            # Visitor signature
+            file.write("Visitor<T> visitor")
+            file.write(")\n\t{\n\t\treturn visitor.visit" + cn + "(*this);\n\t}")
+            file.write("\n\nprivate:\n")
             for a in classes__[c]:
                 k = a[0]
                 file.write("\tconst ")
