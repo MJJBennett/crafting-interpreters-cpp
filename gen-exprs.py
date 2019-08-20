@@ -5,6 +5,7 @@
 template__ = """#ifndef EXPRESSION_LOX_H
 #define EXPRESSION_LOX_H
 
+#include <vector>
 #include "tokens.h"
 
 struct Expression
@@ -24,7 +25,10 @@ classes__ = {
     "This": [("Token", "keyword")],
     "Super": [("Token", "keyword"), ("Token", "method")],
     "Set": [("Expr", "object"), ("Token", "name"), ("Expr", "value")],
-    "Logical": [("Expr", "left"), ("Token", "op"), ("Expr", "right")]
+    "Get": [("Expr", "object"), ("Token", "name")],
+    "Grouping": [("Expr", "expression")],
+    "Logical": [("Expr", "left"), ("Token", "op"), ("Expr", "right")],
+    "Call": [("Expr", "callee"), ("Token", "paren"), ("le", "arguments")]
 }
 
 if __name__ == '__main__':
@@ -58,13 +62,15 @@ struct Visitor
                     file.write(k + " " + a[1])
                 elif k == "Expr":
                     file.write("const Expression* " + a[1])
+                elif k == "le":
+                    file.write("std::vector<const Expression*> " + a[1])
                 needcomma = True
             needcomma = False
             file.write(")\n\t\t: ")
             for a in classes__[c]:
                 if needcomma:
                     file.write(", ")
-                file.write("m_" + a[1] + "(" + a[1] + ")")
+                file.write("m_" + a[1] + "(" + (a[1] if a[0] not in ['le'] else ("std::move(" + a[1] + ")"))  + ")")
                 needcomma = True
             file.write("\n\t{\n\t}\n\n")
             file.write("\ttemplate<typename T>\n")
@@ -80,6 +86,8 @@ struct Visitor
                     file.write(k + " m_" + a[1])
                 elif k == "Expr":
                     file.write("Expression* m_" + a[1])
+                elif k == "le":
+                    file.write("std::vector<const Expression*> m_" + a[1])
                 file.write(";\n")
             file.write("};\n\n")
 

@@ -16,6 +16,8 @@ add_executable(Interpreter
     src/tools.cpp include/tools.h
     src/keywords.cpp include/keywords.h
     src/expression.cpp include/expression.h
+    # Visitors
+    src/visitors/astprinter.cpp include/visitors/astprinter.h
     # Main application compilation
     src/app.cpp
     # Class compilation

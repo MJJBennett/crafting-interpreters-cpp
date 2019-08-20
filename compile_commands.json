@@ -11,6 +11,21 @@
   },
   {
     "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/keywords.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/keywords.cpp",
+    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/keywords.cpp"
+  },
+  {
+    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/expression.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/expression.cpp",
+    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/expression.cpp"
+  },
+  {
+    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/visitors/astprinter.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/visitors/astprinter.cpp",
+    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/visitors/astprinter.cpp"
+  },
+  {
+    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
     "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/app.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/app.cpp",
     "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/app.cpp"
   },
@@ -37,6 +52,11 @@
   {
     "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
     "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/tokens.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/tokens.cpp",
+    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/include/expression.h"
+  },
+  {
+    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
+    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/tokens.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/tokens.cpp",
     "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/include/scanner.h"
   },
   {
@@ -57,16 +77,6 @@
   {
     "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
     "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/tokens.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/tokens.cpp",
-    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/keywords.cpp"
-  },
-  {
-    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
-    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/tokens.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/tokens.cpp",
-    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/src/expression.cpp"
-  },
-  {
-    "directory": "/Users/michael/programming/projects/crafting-interpreters-cpp/output",
-    "command": "/usr/local/bin/g++   -I/Users/michael/programming/projects/crafting-interpreters-cpp/include   -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk   -Wall -Wextra -pedantic -Werror -Wno-unused-function -std=gnu++17 -o CMakeFiles/Interpreter.dir/src/tokens.cpp.o -c /Users/michael/programming/projects/crafting-interpreters-cpp/src/tokens.cpp",
-    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/include/expression.h"
+    "file": "/Users/michael/programming/projects/crafting-interpreters-cpp/include/visitors/astprinter.h"
   }
 ]

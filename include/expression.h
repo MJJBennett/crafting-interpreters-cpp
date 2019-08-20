@@ -1,6 +1,7 @@
 #ifndef EXPRESSION_LOX_H
 #define EXPRESSION_LOX_H
 
+#include <vector>
 #include "tokens.h"
 
 struct Expression
@@ -14,7 +15,10 @@ struct AssignExpr;
 struct ThisExpr;
 struct SuperExpr;
 struct SetExpr;
+struct GetExpr;
+struct GroupingExpr;
 struct LogicalExpr;
+struct CallExpr;
 
 template<typename T>
 struct Visitor
@@ -26,7 +30,10 @@ struct Visitor
 	T visitThisExpr(const ThisExpr& expr);
 	T visitSuperExpr(const SuperExpr& expr);
 	T visitSetExpr(const SetExpr& expr);
+	T visitGetExpr(const GetExpr& expr);
+	T visitGroupingExpr(const GroupingExpr& expr);
 	T visitLogicalExpr(const LogicalExpr& expr);
+	T visitCallExpr(const CallExpr& expr);
 };
 
 struct UnaryExpr : public Expression
@@ -162,6 +169,43 @@ private:
 	const Expression* m_value;
 };
 
+struct GetExpr : public Expression
+{
+public:
+	GetExpr(const Expression* object, Token name)
+		: m_object(object), m_name(name)
+	{
+	}
+
+	template<typename T>
+	T accept(Visitor<T> visitor)
+	{
+		return visitor.visitGetExpr(*this);
+	}
+
+private:
+	const Expression* m_object;
+	const Token m_name;
+};
+
+struct GroupingExpr : public Expression
+{
+public:
+	GroupingExpr(const Expression* expression)
+		: m_expression(expression)
+	{
+	}
+
+	template<typename T>
+	T accept(Visitor<T> visitor)
+	{
+		return visitor.visitGroupingExpr(*this);
+	}
+
+private:
+	const Expression* m_expression;
+};
+
 struct LogicalExpr : public Expression
 {
 public:
@@ -180,6 +224,26 @@ private:
 	const Expression* m_left;
 	const Token m_op;
 	const Expression* m_right;
+};
+
+struct CallExpr : public Expression
+{
+public:
+	CallExpr(const Expression* callee, Token paren, std::vector<const Expression*> arguments)
+		: m_callee(callee), m_paren(paren), m_arguments(std::move(arguments))
+	{
+	}
+
+	template<typename T>
+	T accept(Visitor<T> visitor)
+	{
+		return visitor.visitCallExpr(*this);
+	}
+
+private:
+	const Expression* m_callee;
+	const Token m_paren;
+	const std::vector<const Expression*> m_arguments;
 };
 
 #endif  // EXPRESSION_LOX_H
