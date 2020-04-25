@@ -18,17 +18,18 @@ after__ = """#endif  // EXPRESSION_LOX_H
 """
 
 classes__ = {
-    "Unary": [("Token", "op"), ("Expr", "right")],
-    "Variable": [("Token", "name")],
-    "Binary": [("Expr", "left"), ("Token", "op"), ("Expr", "right")],
     "Assign": [("Token", "name"), ("Expr", "value")],
-    "This": [("Token", "keyword")],
-    "Super": [("Token", "keyword"), ("Token", "method")],
-    "Set": [("Expr", "object"), ("Token", "name"), ("Expr", "value")],
+    "Binary": [("Expr", "left"), ("Token", "op"), ("Expr", "right")],
+    "Call": [("Expr", "callee"), ("Token", "paren"), ("le", "arguments")],
     "Get": [("Expr", "object"), ("Token", "name")],
     "Grouping": [("Expr", "expression")],
+    "Literal": [("Literal", "value")],
     "Logical": [("Expr", "left"), ("Token", "op"), ("Expr", "right")],
-    "Call": [("Expr", "callee"), ("Token", "paren"), ("le", "arguments")]
+    "Set": [("Expr", "object"), ("Token", "name"), ("Expr", "value")],
+    "Super": [("Token", "keyword"), ("Token", "method")],
+    "This": [("Token", "keyword")],
+    "Unary": [("Token", "op"), ("Expr", "right")],
+    "Variable": [("Token", "name")]
 }
 
 if __name__ == '__main__':
@@ -64,6 +65,8 @@ struct Visitor
                     file.write("const Expression* " + a[1])
                 elif k == "le":
                     file.write("std::vector<const Expression*> " + a[1])
+                elif k == "Literal":
+                    file.write("Literal " + a[1])
                 needcomma = True
             needcomma = False
             file.write(")\n\t\t: ")
@@ -88,6 +91,8 @@ struct Visitor
                     file.write("Expression* m_" + a[1])
                 elif k == "le":
                     file.write("std::vector<const Expression*> m_" + a[1])
+                elif k == "Literal":
+                    file.write("Literal m_" + a[1])
                 file.write(";\n")
             file.write("};\n\n")
 
